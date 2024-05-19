@@ -1,5 +1,7 @@
 package com.example.projekt
 
+import java.io.Serializable
+
 data class Product(
     val id: Long,
     val name: String,
@@ -9,4 +11,4 @@ data class Product(
     val grams: String,
     val pergram: String,
     val imageLink: String
-)
+) : Serializable

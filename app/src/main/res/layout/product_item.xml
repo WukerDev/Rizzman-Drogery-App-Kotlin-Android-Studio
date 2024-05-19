@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:paddingVertical="8dp">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_width="1dp"
+        android:layout_height="123dp"
+        android:layout_marginEnd="8dp"
         android:layout_weight="1"
-        android:scaleType="centerInside"
-        android:layout_marginEnd="8dp" />
+        android:scaleType="centerInside" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -23,37 +23,42 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/brandTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/descriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"/>
+            android:textSize="10sp"/>
 
-        <TextView
-            android:id="@+id/gramsTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/priceTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="25sp"
+            android:textColor="@color/main"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/pergramTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"/>
+            android:textSize="10sp"/>
+
+        <Button
+            android:id="@+id/addToCartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@color/main"
+            android:text="Dodaj"
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
     </LinearLayout>
 </LinearLayout>

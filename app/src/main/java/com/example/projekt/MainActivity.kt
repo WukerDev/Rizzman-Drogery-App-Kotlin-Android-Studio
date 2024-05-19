@@ -1,14 +1,17 @@
 package com.example.projekt
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -17,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var databaseHelper: DatabaseHelper
     private lateinit var productContainer: LinearLayout
     private lateinit var reloadButton: Button
-
+    private lateinit var floatingActionButton: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +29,16 @@ class MainActivity : AppCompatActivity() {
         databaseHelper = DatabaseHelper(this)
         productContainer = findViewById(R.id.productContainer)
         reloadButton = findViewById(R.id.reloadButton)
+        floatingActionButton = findViewById(R.id.floatingActionButton)
 
         reloadButton.setOnClickListener {
             clearDatabaseAndReload()
         }
 
+        floatingActionButton.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
 
         // Load and display products
         loadProducts().forEach { product ->
@@ -79,21 +87,33 @@ class MainActivity : AppCompatActivity() {
         val nameTextView = productView.findViewById<TextView>(R.id.nameTextView)
         val brandTextView = productView.findViewById<TextView>(R.id.brandTextView)
         val descriptionTextView = productView.findViewById<TextView>(R.id.descriptionTextView)
-        val gramsTextView = productView.findViewById<TextView>(R.id.gramsTextView)
+        //val gramsTextView = productView.findViewById<TextView>(R.id.gramsTextView)
         val priceTextView = productView.findViewById<TextView>(R.id.priceTextView)
         val pergramTextView = productView.findViewById<TextView>(R.id.pergramTextView)
         val imageView = productView.findViewById<ImageView>(R.id.imageView)
-
+        val addToCartButton = productView.findViewById<Button>(R.id.addToCartButton)
 
         nameTextView.text = product.name
         descriptionTextView.text = product.description
-        gramsTextView.text = "${product.grams} ml"
+        //gramsTextView.text = "${product.grams} ml"
         priceTextView.text = "${product.price} zł"
-        pergramTextView.text = "${product.pergram} zł za ml"
+        pergramTextView.text = "${product.pergram} zł za 100 ml"
         brandTextView.text = product.brand
 
         // Load image using AsyncTask
         LoadImageTask(imageView).execute(product.imageLink)
+
+        addToCartButton.setOnClickListener {
+            CartManager.addProduct(product)
+            Toast.makeText(this, "Dodano do koszyka", Toast.LENGTH_SHORT).show()
+        }
+
+        // Set click listener to navigate to details view
+        imageView.setOnClickListener {
+            val intent = Intent(this, ProductDetailsActivity::class.java)
+            intent.putExtra("product", product)
+            startActivity(intent)
+        }
 
         productContainer.addView(productView)
     }

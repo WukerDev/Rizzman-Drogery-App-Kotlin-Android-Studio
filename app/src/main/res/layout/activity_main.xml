@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Toolbar with company name -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="?attr/colorPrimary"
+        android:background="@color/main"
         android:padding="5dp"
         android:gravity="center_vertical">
 
@@ -25,9 +28,9 @@
             android:id="@+id/reloadButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reload Database"
-            android:textColor="@android:color/white"
-            android:background="?attr/colorAccent"/>
+            android:background="@color/main"
+            android:text="Reload"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <!-- ScrollView for product list -->
@@ -46,4 +49,24 @@
             android:padding="16dp">
         </LinearLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="5"
+            android:background="@color/main"
+            android:clickable="true"
+            app:backgroundTint="@color/main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/cart"
+            tools:layout_weight="5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
