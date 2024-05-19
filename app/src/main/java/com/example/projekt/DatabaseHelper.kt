@@ -74,12 +74,39 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             },
             ContentValues().apply {
                 put(DatabaseContract.ProductEntry.COLUMN_NAME, "Maestria")
-                put(DatabaseContract.ProductEntry.COLUMN_BRAND, "DERMIKA ")
+                put(DatabaseContract.ProductEntry.COLUMN_BRAND, "DERMIKA")
                 put(DatabaseContract.ProductEntry.COLUMN_DESC, "Krem do twarzy przeciwzmarszczkowy, na dzień i na noc 50+")
                 put(DatabaseContract.ProductEntry.COLUMN_PRICE, 59.99)
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 50)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 119.98)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_7_large/2077409_1280_720_1709190652.png")
+            },
+            ContentValues().apply {
+                put(DatabaseContract.ProductEntry.COLUMN_NAME, "Fresh Endurance")
+                put(DatabaseContract.ProductEntry.COLUMN_BRAND, "ADIDAS")
+                put(DatabaseContract.ProductEntry.COLUMN_DESC, "Antyperspirant w kulce, 72h")
+                put(DatabaseContract.ProductEntry.COLUMN_PRICE, 12.99)
+                put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 50)
+                put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 25.98)
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/408621_1280_720_1709210564.png")
+            },
+            ContentValues().apply {
+                put(DatabaseContract.ProductEntry.COLUMN_NAME, "Hawajski Klimat")
+                put(DatabaseContract.ProductEntry.COLUMN_BRAND, "MANUFAKTURA PIĘKNA")
+                put(DatabaseContract.ProductEntry.COLUMN_DESC, "Mgiełka do ciała")
+                put(DatabaseContract.ProductEntry.COLUMN_PRICE, 16.49)
+                put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 150)
+                put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 10.99)
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/351427_1280_720_1709183053.png")
+            },
+            ContentValues().apply {
+                put(DatabaseContract.ProductEntry.COLUMN_NAME, "Olej arganowy")
+                put(DatabaseContract.ProductEntry.COLUMN_BRAND, "ARGANOVE")
+                put(DatabaseContract.ProductEntry.COLUMN_DESC, "Olej arganowy, odżywiający, nawilżający, ujędrniający, 100% naturalny")
+                put(DatabaseContract.ProductEntry.COLUMN_PRICE, 10.99)
+                put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 30)
+                put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 36.63)
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/323214_1280_720_1709157698.png")
             },
         )
 
