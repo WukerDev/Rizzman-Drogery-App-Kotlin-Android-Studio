@@ -25,6 +25,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             val pergramTextView = findViewById<TextView>(R.id.detailPergramTextView)
             val addToCartButton = findViewById<Button>(R.id.addToCartButton)
 
+
             nameTextView.text = product.name
             brandTextView.text = product.brand
             descriptionTextView.text = product.description
