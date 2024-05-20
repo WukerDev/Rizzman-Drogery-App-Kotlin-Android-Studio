@@ -46,7 +46,8 @@
         android:background="@color/main"
         android:text="Zapłać"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:stateListAnimator="@animator/button_state_animator"/>
 </LinearLayout>
 
 

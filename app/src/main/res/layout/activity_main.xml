@@ -39,7 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/reloadButton"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:stateListAnimator="@animator/button_state_animator">
 
         <LinearLayout
             android:id="@+id/productContainer"
@@ -67,6 +68,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/cart"
-            tools:layout_weight="5" />
+            tools:layout_weight="5"
+            android:stateListAnimator="@animator/button_state_animator"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

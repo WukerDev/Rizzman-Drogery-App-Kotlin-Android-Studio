@@ -10,5 +10,7 @@ data class Product(
     val price: Double,
     val grams: String,
     val pergram: String,
-    val imageLink: String
+    val imageLink: String,
+    val imageLink2: String,
+    val imageLink3: String
 ) : Serializable

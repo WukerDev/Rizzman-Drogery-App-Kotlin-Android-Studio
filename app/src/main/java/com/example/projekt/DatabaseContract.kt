@@ -12,6 +12,8 @@ object DatabaseContract {
         const val COLUMN_GRAMS = "grams"
         const val COLUMN_PERGRAM = "pergram"
         const val COLUMN_IMAGELINK = "imagelink"
+        const val COLUMN_IMAGELINK2 = "imagelink2"
+        const val COLUMN_IMAGELINK3 = "imagelink3"
         const val ID = BaseColumns._ID
     }
 }

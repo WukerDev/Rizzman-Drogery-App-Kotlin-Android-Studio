@@ -11,7 +11,8 @@
         android:layout_height="123dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:stateListAnimator="@animator/button_state_animator"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -59,6 +60,7 @@
             android:background="@color/main"
             android:text="Dodaj"
             android:textColor="@android:color/white"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:stateListAnimator="@animator/button_state_animator"/>
     </LinearLayout>
 </LinearLayout>

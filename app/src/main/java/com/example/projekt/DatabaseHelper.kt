@@ -12,20 +12,18 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val SQL_CREATE_ENTRIES = """
-            CREATE TABLE ${DatabaseContract.ProductEntry.TABLE_NAME} (
-                ${DatabaseContract.ProductEntry.ID} INTEGER PRIMARY KEY,
-                ${DatabaseContract.ProductEntry.COLUMN_NAME} TEXT,
-                ${DatabaseContract.ProductEntry.COLUMN_BRAND} TEXT,
-                ${DatabaseContract.ProductEntry.COLUMN_DESC} TEXT,
-                ${DatabaseContract.ProductEntry.COLUMN_PRICE} REAL,
-                ${DatabaseContract.ProductEntry.COLUMN_GRAMS} REAL,
-                ${DatabaseContract.ProductEntry.COLUMN_PERGRAM} REAL,
-                ${DatabaseContract.ProductEntry.COLUMN_IMAGELINK} TEXT
-            )
-        """.trimIndent()
-        db.execSQL(SQL_CREATE_ENTRIES)
-
+        val CREATE_PRODUCTS_TABLE = ("CREATE TABLE " + DatabaseContract.ProductEntry.TABLE_NAME + " ("
+                + DatabaseContract.ProductEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + DatabaseContract.ProductEntry.COLUMN_NAME + " TEXT,"
+                + DatabaseContract.ProductEntry.COLUMN_BRAND + " TEXT,"
+                + DatabaseContract.ProductEntry.COLUMN_DESC + " TEXT,"
+                + DatabaseContract.ProductEntry.COLUMN_PRICE + " REAL,"
+                + DatabaseContract.ProductEntry.COLUMN_GRAMS + " TEXT,"
+                + DatabaseContract.ProductEntry.COLUMN_PERGRAM + " TEXT,"
+                + DatabaseContract.ProductEntry.COLUMN_IMAGELINK + " TEXT,"
+                + DatabaseContract.ProductEntry.COLUMN_IMAGELINK2 + " TEXT,"
+                + DatabaseContract.ProductEntry.COLUMN_IMAGELINK3 + " TEXT" + ")")
+        db.execSQL(CREATE_PRODUCTS_TABLE)
         insertInitialData(db)
     }
 
@@ -44,6 +42,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 40)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 149.98)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_7_large/2077657_1280_720_1713435779.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2, "https://pro-fra-s3-productsassets.rossmann.pl/product_3_large/381360_1280_720_1709189045.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3, "https://pro-fra-s3-productsassets.rossmann.pl/product_6_large/381360_1280_720_1709188623.png")
+
             },
             ContentValues().apply {
                 put(DatabaseContract.ProductEntry.COLUMN_NAME, "Krem i puder do twarzy")
@@ -53,6 +54,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 9)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 99.89)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/251571_1280_720_1709158726.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2, "https://pro-fra-s3-productsassets.rossmann.pl/product_2_large/251566_1280_720_1709138556.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/251571_1280_720_1709158726.png")
+
             },
             ContentValues().apply {
                 put(DatabaseContract.ProductEntry.COLUMN_NAME, "Eyebrow Expert")
@@ -62,6 +66,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 6)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 383.17)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/279994_1280_720_1709153893.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2, "https://pro-fra-s3-productsassets.rossmann.pl/product_2_large/279992_1280_720_1709148194.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3, "https://pro-fra-s3-productsassets.rossmann.pl/product_3_large/279992_1280_720_1709148195.png")
+
             },
             ContentValues().apply {
                 put(DatabaseContract.ProductEntry.COLUMN_NAME, "Żel do brwi")
@@ -71,6 +78,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 16)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 224.94)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/2073580_1280_720_1709182882.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2, "https://pro-fra-s3-productsassets.rossmann.pl/product_2_large/2073580_1280_720_1709213897.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/2073580_1280_720_1709182882.png")
+
             },
             ContentValues().apply {
                 put(DatabaseContract.ProductEntry.COLUMN_NAME, "Maestria")
@@ -80,6 +90,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 50)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 119.98)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_7_large/2077409_1280_720_1709190652.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/2077408_1280_720_1709190656.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3, "https://pro-fra-s3-productsassets.rossmann.pl/product_2_large/2077408_1280_720_1709215323.png")
+
             },
             ContentValues().apply {
                 put(DatabaseContract.ProductEntry.COLUMN_NAME, "Fresh Endurance")
@@ -89,6 +102,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 50)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 25.98)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/408621_1280_720_1709210564.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2, "https://pro-fra-s3-productsassets.rossmann.pl/product_2_large/408621_1280_720_1709210562.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/408621_1280_720_1709210564.png")
+
             },
             ContentValues().apply {
                 put(DatabaseContract.ProductEntry.COLUMN_NAME, "Hawajski Klimat")
@@ -98,6 +114,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 150)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 10.99)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/351427_1280_720_1709183053.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2, "https://pro-fra-s3-productsassets.rossmann.pl/product_2_large/351427_1280_720_1709178967.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3, "https://pro-fra-s3-productsassets.rossmann.pl/product_3_large/351427_1280_720_1709178969.png")
+
             },
             ContentValues().apply {
                 put(DatabaseContract.ProductEntry.COLUMN_NAME, "Olej arganowy")
@@ -107,6 +126,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put(DatabaseContract.ProductEntry.COLUMN_GRAMS, 30)
                 put(DatabaseContract.ProductEntry.COLUMN_PERGRAM, 36.63)
                 put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/323214_1280_720_1709157698.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2, "https://pro-fra-s3-productsassets.rossmann.pl/product_2_large/323214_1280_720_1709157701.png")
+                put(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3, "https://pro-fra-s3-productsassets.rossmann.pl/product_1_large/323214_1280_720_1709157698.png")
+
             },
         )
 

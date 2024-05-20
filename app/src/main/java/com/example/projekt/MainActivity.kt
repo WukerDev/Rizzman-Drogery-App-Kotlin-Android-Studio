@@ -5,8 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -56,7 +56,9 @@ class MainActivity : AppCompatActivity() {
             DatabaseContract.ProductEntry.COLUMN_PRICE,
             DatabaseContract.ProductEntry.COLUMN_GRAMS,
             DatabaseContract.ProductEntry.COLUMN_PERGRAM,
-            DatabaseContract.ProductEntry.COLUMN_IMAGELINK
+            DatabaseContract.ProductEntry.COLUMN_IMAGELINK,
+            DatabaseContract.ProductEntry.COLUMN_IMAGELINK2,
+            DatabaseContract.ProductEntry.COLUMN_IMAGELINK3
         )
         val cursor = db.query(
             DatabaseContract.ProductEntry.TABLE_NAME,
@@ -75,7 +77,9 @@ class MainActivity : AppCompatActivity() {
                 val grams = getString(getColumnIndexOrThrow(DatabaseContract.ProductEntry.COLUMN_GRAMS))
                 val pergram = getString(getColumnIndexOrThrow(DatabaseContract.ProductEntry.COLUMN_PERGRAM))
                 val imageLink = getString(getColumnIndexOrThrow(DatabaseContract.ProductEntry.COLUMN_IMAGELINK))
-                products.add(Product(id, name, brand, description, price, grams, pergram, imageLink))
+                val imageLink2 = getString(getColumnIndexOrThrow(DatabaseContract.ProductEntry.COLUMN_IMAGELINK2))
+                val imageLink3 = getString(getColumnIndexOrThrow(DatabaseContract.ProductEntry.COLUMN_IMAGELINK3))
+                products.add(Product(id, name, brand, description, price, grams, pergram, imageLink, imageLink2, imageLink3))
             }
         }
         cursor.close()
@@ -105,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
         addToCartButton.setOnClickListener {
             CartManager.addProduct(product)
-            Toast.makeText(this, "Dodano do koszyka", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${product.name} added to cart", Toast.LENGTH_SHORT).show()
         }
 
         // Set click listener to navigate to details view
