@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RadioGroup
+        android:id="@+id/filterRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/filterAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wszystkie Produkty"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/filterPriceLowToHigh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cena: Rosnąco"/>
+
+        <RadioButton
+            android:id="@+id/filterPriceHighToLow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cena: Malejąco"/>
+
+        <RadioButton
+            android:id="@+id/filterBrandAtoZ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marka: Od A do Z"/>
+
+        <RadioButton
+            android:id="@+id/filterBrandZtoA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marka: Od Z do A"/>
+
+        <RadioButton
+            android:id="@+id/filterNameAtoZ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produkt: Od A do Z"/>
+
+        <RadioButton
+            android:id="@+id/filterNameZtoA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produkt: Od Z do A"/>
+
+    </RadioGroup>
+</LinearLayout>

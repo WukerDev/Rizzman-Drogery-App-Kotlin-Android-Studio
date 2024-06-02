@@ -5,11 +5,17 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.net.HttpURLConnection
@@ -19,8 +25,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var databaseHelper: DatabaseHelper
     private lateinit var productContainer: LinearLayout
-    private lateinit var reloadButton: Button
+    private lateinit var filterButton: Button
+    private lateinit var searchEditText: EditText
     private lateinit var floatingActionButton: FloatingActionButton
+    private var allProducts: List<Product> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +36,12 @@ class MainActivity : AppCompatActivity() {
 
         databaseHelper = DatabaseHelper(this)
         productContainer = findViewById(R.id.productContainer)
-        reloadButton = findViewById(R.id.reloadButton)
+        filterButton = findViewById(R.id.filterButton)
+        searchEditText = findViewById(R.id.searchEditText)
         floatingActionButton = findViewById(R.id.floatingActionButton)
 
-        reloadButton.setOnClickListener {
-            clearDatabaseAndReload()
+        filterButton.setOnClickListener {
+            showFilterDialog()
         }
 
         floatingActionButton.setOnClickListener {
@@ -41,9 +50,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Load and display products
-        loadProducts().forEach { product ->
+        allProducts = loadProducts()
+        allProducts.forEach { product ->
             addProductView(product)
         }
+
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                filterProducts(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
     }
 
     private fun loadProducts(): List<Product> {
@@ -109,7 +129,7 @@ class MainActivity : AppCompatActivity() {
 
         addToCartButton.setOnClickListener {
             CartManager.addProduct(product)
-            Toast.makeText(this, "${product.name} added to cart", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${product.name} został dodany do koszyka", Toast.LENGTH_SHORT).show()
         }
 
         // Set click listener to navigate to details view
@@ -126,7 +146,55 @@ class MainActivity : AppCompatActivity() {
         databaseHelper.clearDatabase()
         productContainer.removeAllViews()
         databaseHelper.insertInitialData(databaseHelper.writableDatabase)
-        loadProducts().forEach { product ->
+        allProducts = loadProducts()
+        allProducts.forEach { product ->
+            addProductView(product)
+        }
+    }
+
+    private fun showFilterDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_filters, null)
+        val radioGroup = dialogView.findViewById<RadioGroup>(R.id.filterRadioGroup)
+
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Filtruj Produkty")
+            .setView(dialogView)
+            .setPositiveButton("Zastosuj") { _, _ ->
+                applyFilter(radioGroup.checkedRadioButtonId)
+            }
+            .setNegativeButton("Anuluj", null)
+            .create()
+
+        dialog.show()
+    }
+
+    private fun applyFilter(checkedId: Int) {
+        val filteredProducts = when (checkedId) {
+            R.id.filterPriceLowToHigh -> allProducts.sortedBy { it.price }
+            R.id.filterPriceHighToLow -> allProducts.sortedByDescending { it.price }
+            R.id.filterBrandAtoZ -> allProducts.sortedBy { it.brand }
+            R.id.filterBrandZtoA -> allProducts.sortedByDescending { it.brand }
+            R.id.filterNameAtoZ -> allProducts.sortedBy { it.name }
+            R.id.filterNameZtoA -> allProducts.sortedByDescending { it.name }
+            else -> allProducts
+        }
+
+        productContainer.removeAllViews()
+        filteredProducts.forEach { product ->
+            addProductView(product)
+        }
+    }
+
+    private fun filterProducts(query: String) {
+        val filteredProducts = allProducts.filter { product ->
+            product.name.contains(query, ignoreCase = true) ||
+                    product.brand.contains(query, ignoreCase = true) ||
+                    product.description.contains(query, ignoreCase = true) ||
+                    product.price.toString().contains(query, ignoreCase = true)
+        }
+
+        productContainer.removeAllViews()
+        filteredProducts.forEach { product ->
             addProductView(product)
         }
     }

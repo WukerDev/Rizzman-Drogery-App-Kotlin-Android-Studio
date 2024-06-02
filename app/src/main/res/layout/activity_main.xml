@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <!-- Toolbar with company name -->
-
     <LinearLayout
+        android:id="@+id/titleSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -25,22 +25,32 @@
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/reloadButton"
+            android:id="@+id/filterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main"
-            android:text="Reload"
-            android:textColor="@android:color/white" />
+            android:text="Filtruj"
+            android:textColor="@android:color/white"
+            android:stateListAnimator="@animator/button_state_animator"/>
     </LinearLayout>
+
+    <!-- Search bar -->
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wyszukaj..."
+        android:padding="5dp"
+        android:layout_below="@+id/titleSection"
+        android:layout_margin="5dp"
+        android:inputType="text"/>
 
     <!-- ScrollView for product list -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/reloadButton"
-        android:layout_marginTop="60dp"
-        android:stateListAnimator="@animator/button_state_animator">
+        android:layout_below="@id/searchEditText">
 
         <LinearLayout
             android:id="@+id/productContainer"
@@ -61,14 +71,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_weight="5"
             android:background="@color/main"
             android:clickable="true"
             app:backgroundTint="@color/main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/cart"
-            tools:layout_weight="5"
             android:stateListAnimator="@animator/button_state_animator"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

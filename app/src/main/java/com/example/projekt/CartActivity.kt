@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.os.Bundle
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -16,6 +17,10 @@ class CartActivity : AppCompatActivity() {
     private lateinit var cartContainer: LinearLayout
     private lateinit var emptyCartTextView: TextView
     private lateinit var totalPriceTextView: TextView
+    private lateinit var excludeVatCheckBox: CheckBox
+
+    private var totalPrice: Double = 0.0
+    private var isVatExcluded: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +29,7 @@ class CartActivity : AppCompatActivity() {
         cartContainer = findViewById(R.id.cartContainer)
         emptyCartTextView = findViewById(R.id.emptyCartTextView)
         totalPriceTextView = findViewById(R.id.totalPriceTextView)
+        excludeVatCheckBox = findViewById(R.id.excludeVatCheckBox)
 
         val cartItems = CartManager.getCartItems()
         if (cartItems.isEmpty()) {
@@ -33,6 +39,12 @@ class CartActivity : AppCompatActivity() {
             cartItems.forEach { product ->
                 addCartItemView(product)
             }
+            totalPrice = CartManager.getTotalPrice()
+            updateTotalPrice()
+        }
+
+        excludeVatCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            isVatExcluded = isChecked
             updateTotalPrice()
         }
     }
@@ -53,8 +65,8 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun updateTotalPrice() {
-        val totalPrice = CartManager.getTotalPrice()
-        val formattedTotalPrice = String.format("%.2f", totalPrice)
+        val displayPrice = if (isVatExcluded) totalPrice / 1.23 else totalPrice
+        val formattedTotalPrice = String.format("%.2f", displayPrice)
         totalPriceTextView.text = "Kwota Końcowa: $formattedTotalPrice zł"
     }
 

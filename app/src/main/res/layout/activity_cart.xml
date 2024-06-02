@@ -30,6 +30,12 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:padding="8dp" />
+    <CheckBox
+        android:id="@+id/excludeVatCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Odlicz VAT"
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/totalPriceTextView"
@@ -38,7 +44,10 @@
         android:text="Kwota Końcowa: 0.00 zł"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="2dp" />
+
+
+
     <Button
         android:id="@+id/addToCartButton"
         android:layout_width="match_parent"
@@ -47,9 +56,6 @@
         android:text="Zapłać"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:stateListAnimator="@animator/button_state_animator"/>
+        android:stateListAnimator="@animator/button_state_animator"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
-
-
-
-
